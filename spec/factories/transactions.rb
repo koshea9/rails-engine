@@ -1,8 +1,12 @@
 FactoryBot.define do
   factory :transaction do
-    invoice_id { "" }
-    credit_card_number { "MyString" }
-    credit_card_expiration_date { "MyString" }
-    result { "MyString" }
+    invoice
+    credit_card_number { Faker::Business.credit_card_number }
+    credit_card_expiration_date { Faker::Business.credit_card_expiry_date }
+    result { rand(0..2) }
+  end
+
+  factory :successful_transaction do
+    result { 3 }
   end
 end
