@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :merchant do
-    name { Faker::Company.name }
+    sequence :name do |n|
+      "merchant-#{n}"
+    end
   end
 end
