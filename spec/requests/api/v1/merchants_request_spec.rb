@@ -123,10 +123,6 @@ RSpec.describe 'Merchants API endpoint' do
         end
       end
     end
-
-    describe "get one merchant" do
-      it ""
-    end
   end
 
   describe "sad path" do
