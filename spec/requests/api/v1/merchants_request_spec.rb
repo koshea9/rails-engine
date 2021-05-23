@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Merchants API endpoint' do
-before :each do
-  FactoryBot.reload
-  create_list(:merchant, 60)
-end
+  before :each do
+    FactoryBot.reload
+    create_list(:merchant, 60)
+  end
 
   describe "happy path" do
   it 'returns a default max of 20 results if no per page limit applied in params' do
@@ -125,7 +125,29 @@ end
 
   describe "sad path" do
     it "returns defaults to return the first 20 merchants if user enters page 0" do
-      get "/api/v1/merchants?page=0"
+      get "/api/v1/merchants?page=-1"
+
+      merchants = JSON.parse(response.body, symbolize_names: true)
+
+      expect(merchants[:data].count).to eq(20)
+      expect(merchants[:data].first[:attributes][:name]).to eq("merchant-1")
+      expect(merchants[:data].last[:attributes][:name]).to eq("merchant-20")
+
+      expect(merchants).to be_a(Hash)
+
+      merchants[:data].each do |merchant|
+        expect(merchant).to have_key(:id)
+        expect(merchant[:id]).to be_an(String)
+
+        expect(merchant[:attributes]).to have_key(:name)
+        expect(merchant[:attributes][:name]).to be_an(String)
+      end
+    end
+end
+
+  describe "edge case" do
+    it "returns defaults to return the first 20 merchants if user enters page less than 1" do
+      get "/api/v1/merchants?page=-1"
 
       merchants = JSON.parse(response.body, symbolize_names: true)
 
