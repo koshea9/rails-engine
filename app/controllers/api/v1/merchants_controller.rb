@@ -1,7 +1,5 @@
 class Api::V1::MerchantsController < ApplicationController
-
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
 
   def index
     merchants = Merchant.all.limit(page_limit).offset(page)
