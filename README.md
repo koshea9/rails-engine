@@ -21,4 +21,6 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+Database Schema
+![database](https://user-images.githubusercontent.com/24997456/119398505-e2bab280-bc94-11eb-80f3-c21fd72085c4.png)
+
