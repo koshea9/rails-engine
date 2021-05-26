@@ -4,7 +4,7 @@ class Api::V1::Revenue::MerchantsController < ApplicationController
       render json: {status: "error", code: 400, message: "Please enter quantity as an integer"}
     else
       merchants = Merchant.total_revenue_ranking(params[:quantity])
-      render json: MerchantSerializer.new(merchants, { params: { quantity: true } })
+      render json: MerchantNameRevenueSerializer.new(merchants, { params: { quantity: true } })
     end
   end
 
@@ -12,5 +12,4 @@ class Api::V1::Revenue::MerchantsController < ApplicationController
     merchant = Merchant.find(params[:id])
     render json: MerchantRevenueSerializer.new(merchant)
   end
-
 end
