@@ -44,10 +44,10 @@ RSpec.describe 'Total Revenue for Given Merchant' do
       expect(merchant_revenue[:data][:id]).to be_a(String)
       expect(merchant_revenue[:data]).to have_key(:type)
       expect(merchant_revenue[:data][:type]).to be_a(String)
-      expect(merchant_revenue[:data]).to have_key(:attribues)
-      expect(merchant_revenue[:data][:attribues]).to be_a(Hash)
-      expect(merchant_revenue[:data][:attribues]).to have_key(:revenue)
-      expect(merchant_revenue[:data][:attribues][:revenue]).to be_a(Float)
+      expect(merchant_revenue[:data]).to have_key(:attributes)
+      expect(merchant_revenue[:data][:attributes]).to be_a(Hash)
+      expect(merchant_revenue[:data][:attributes]).to have_key(:revenue)
+      expect(merchant_revenue[:data][:attributes][:revenue]).to be_a(Float)
     end
   end
 
