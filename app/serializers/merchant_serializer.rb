@@ -3,7 +3,7 @@ class MerchantSerializer
 
   attributes :name
   attribute :revenue, if: proc { |record, params|
-      params[:quantity] == true
+      params[:quantity] == true || params[:revenue] == true
     } do |object|
       object.total_revenue
     end
