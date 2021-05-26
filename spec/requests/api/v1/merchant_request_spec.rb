@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Merchants API endpoint' do
+RSpec.describe 'Single Merchant API endpoint' do
   before :each do
     FactoryBot.reload
     create_list(:merchant, 60)
