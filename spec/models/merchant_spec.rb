@@ -6,6 +6,7 @@ RSpec.describe Merchant, type: :model do
     it { should have_many :items }
     it { should have_many(:customers).through(:invoices) }
     it { should have_many(:transactions).through(:invoices) }
+    it { should have_many(:invoice_items).through(:invoices) }
   end
 
   describe 'validations' do
@@ -13,6 +14,10 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'class methods' do
+    before :each do
+      FactoryBot.reload
+    end
+
     describe '::total_revenue_ranking(merchant_limit)' do
       it 'returns a variable number of merchants ranked by total revenue' do
         #merchants
@@ -26,7 +31,6 @@ RSpec.describe Merchant, type: :model do
         merchant_4 = create(:merchant)
         # not eligible 90 revenue
         merchant_5 = create(:merchant)
-
         #invoices -'shipped' to count towards revenue
         #10
         invoice_1 = create(:shipped_invoice, merchant_id: merchant_2.id)
