@@ -5,7 +5,7 @@ RSpec.describe 'Items by Merchant API endpoint' do
     FactoryBot.reload
   end
 
-  describe "happy path" do
+  describe 'happy path' do
     it 'returns all items for a given merchant' do
       merchant_1 = create(:merchant)
 
@@ -42,27 +42,18 @@ RSpec.describe 'Items by Merchant API endpoint' do
     end
   end
 
-  describe "sad path" do
-    it "returns error message if no items returned" do
-      merchant_no_items = create(:merchant)
-
+  describe 'sad path' do
+    it 'returns error message if no items returned' do
       get '/api/v1/merchants/99999/items'
 
+      error = JSON.parse(response.body, symbolize_names: true)
+
       expect(response).to_not be_successful
-
-      items = JSON.parse(response.body, symbolize_names: true)
-
-      expect(items[:error]).to be_a(String)
-      expect(items[:data]).to have_key(:id)
-      expect(items[:data][:id]).to eq(nil)
-      expect(items[:data]).to have_key(:attributes)
-      expect(items[:data][:attributes][:name]).to be_empty
-      expect(items[:data][:attributes][:description]).to be_empty
-      expect(items[:data][:attributes][:unit_price]).to be_empty
-
+      expect(error).to have_key(:error)
+      expect(error).to_not have_key(:data)
     end
   end
 
-  describe "edge case" do
+  describe 'edge case' do
   end
 end

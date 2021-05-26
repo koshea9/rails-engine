@@ -1,29 +1,35 @@
 class Api::V1::ItemsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   def index
     if params[:merchant_id]
       merchant = Merchant.find(params[:merchant_id])
-      render json: ItemSerializer.new(merchant.items, {params: {merchant_item: true}})
+      render json: ItemSerializer.new(merchant.items, { params: { merchant_item: true } })
     else
-      render json: ItemSerializer.new(Item.first(20))
+      items = Item.all.limit(page_limit).offset(page)
+      render json: ItemSerializer.new(items)
     end
   end
 
+  def show
+    item = Item.find(params[:id])
+    render json: ItemSerializer.new(item)
+  end
+
   private
-  def render_not_found_response(exception)
-    render json: {
-      error: exception.message,
-      "data":
-        {
-      "id": nil,
-        "type": "item",
-        "attributes": {
-          "name": "",
-          "description": "",
-          "unit_price": ""
-        }}
-      },
-      status: :not_found
+
+  def page_limit
+    if params[:per_page].nil? || params[:per_page].to_i < 0
+      20
+    else
+      params[:per_page].to_i
+    end
+  end
+
+  def page
+    if params[:page].nil? || params[:page].to_i < 1
+      0
+    else
+      (params[:page].to_i - 1) * page_limit
+    end
   end
 end
