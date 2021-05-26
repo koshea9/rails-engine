@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       resources :items, only: %i[index show] do
         resources :merchant, only: [:index], controller: 'merchants'
       end
-
       namespace :revenue do
         resources :merchants, only: [:index]
       end

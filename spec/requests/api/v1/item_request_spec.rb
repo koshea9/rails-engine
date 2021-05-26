@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Single Item API endpoint' do
   before :each do
+    FactoryBot.reload
     create_list(:item, 5)
   end
 
@@ -14,7 +15,7 @@ RSpec.describe 'Single Item API endpoint' do
       item = JSON.parse(response.body, symbolize_names: true)
       expect(item.count).to eq(1)
 
-      expect(items).to be_a(Hash)
+      expect(item).to be_a(Hash)
       expect(item[:data]).to have_key(:id)
       expect(item[:data][:id]).to be_an(String)
 
@@ -32,6 +33,16 @@ RSpec.describe 'Single Item API endpoint' do
   end
 
   describe 'sad path' do
+    it 'returns an error if item is not found' do
+      get '/api/v1/items/789'
+
+      expect(response).to_not be_successful
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error).to have_key(:error)
+      expect(error).to_not have_key(:data)
+    end
   end
 
   describe 'edge case' do
