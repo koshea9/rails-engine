@@ -63,8 +63,10 @@ RSpec.describe 'Merchants most revenue API endpoint' do
 
       error = JSON.parse(response.body, symbolize_names: true)
 
-      expect(error).to have_key(:error)
       expect(error).to_not have_key(:data)
+      expect(error).to have_key(:status)
+      expect(error[:status]).to eq("error")
+      expect(error[:message]).to eq("Please enter quantity as an integer")
     end
   end
 

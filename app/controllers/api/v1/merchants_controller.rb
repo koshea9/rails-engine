@@ -2,8 +2,14 @@ class Api::V1::MerchantsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   def index
-    merchants = Merchant.all.limit(page_limit).offset(page)
-    render json: MerchantSerializer.new(merchants)
+    if params[:item_id]
+      item = Item.find(params[:item_id])
+      merchant = Merchant.find(item.merchant_id)
+      render json: MerchantSerializer.new(merchant)
+    else
+      merchants = Merchant.all.limit(page_limit).offset(page)
+      render json: MerchantSerializer.new(merchants)
+    end
   end
 
   def show
