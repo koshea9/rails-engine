@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe 'Create Item API Endpoint' do
   describe 'happy path' do
     it 'can create a new item' do
+      merchant_1 = create(:merchant)
       item_params = ({
         name: 'hot dish displayer',
         description: 'show off your hot dish at the next picnic',
         unit_price: 65.99,
-        merchant_id: 87
+        merchant_id: merchant_1.id
       })
 
       headers = { "CONTENT_TYPE" => "application/json"}

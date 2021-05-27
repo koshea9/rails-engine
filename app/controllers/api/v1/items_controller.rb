@@ -16,6 +16,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
+    render json: Item.create(item_params)
   end
 
   private
@@ -34,5 +35,9 @@ class Api::V1::ItemsController < ApplicationController
     else
       (params[:page].to_i - 1) * page_limit
     end
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
 end
