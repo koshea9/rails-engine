@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Total Revenue for Given Merchant' do
   before :each do
+    FactoryBot.reload
     merchant_1 = create(:merchant)
     merchant_2 = create(:merchant)
     merchant_3 = create(:merchant)
@@ -30,7 +31,7 @@ RSpec.describe 'Total Revenue for Given Merchant' do
   describe 'happy path' do
     it 'returns the total revenue for a single merchant' do
       get '/api/v1/revenue/merchants/1'
-
+      
       expect(response).to be_successful
 
       merchant_revenue = JSON.parse(response.body, symbolize_names: true)

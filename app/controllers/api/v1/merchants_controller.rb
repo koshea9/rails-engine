@@ -13,8 +13,13 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    merchant = Merchant.find(params[:id])
-    render json: MerchantSerializer.new(merchant)
+    if params[:id] == "most_items"
+      merchants = Merchant.rank_by_items_sold(params[:quantity])
+      render json: ItemsSoldSerializer.new(merchants)
+    else
+      merchant = Merchant.find(params[:id])
+      render json: MerchantSerializer.new(merchant)
+    end
   end
 
   private

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :merchants, only: %i[index show] do
+        get '/most_items', to: 'items#index'
         resources :items, only: [:index]
       end
       resources :items, only: %i[index show] do
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
       end
       namespace :revenue do
         resources :merchants, only: [:index, :show]
-        get 'unshipped', to: 'invoices#index'
+        get '/unshipped', to: 'invoices#index'
       end
     end
   end

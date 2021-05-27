@@ -71,6 +71,38 @@ RSpec.describe Merchant, type: :model do
         expect(Merchant.total_revenue_ranking(2).second.revenue).to eq(50)
       end
     end
+
+    describe '::rank_by_items_sold' do
+      it 'returns merchants ranked by total number of items sold' do
+        merchant_1 = create(:merchant)
+        merchant_2 = create(:merchant)
+        merchant_3 = create(:merchant)
+        merchant_4 = create(:merchant)
+
+        item_1 = create(:item, merchant_id: merchant_1.id)
+        invoice_item_1 = create(:invoice_item, item_id: item_1.id)
+        invoice_item_1a = create(:invoice_item, item_id: item_1.id)
+
+        item_2 = create(:item, merchant_id: merchant_2.id)
+        invoice_item_2 = create(:invoice_item, item_id: item_2.id)
+        invoice_item_2a = create(:invoice_item, item_id: item_2.id)
+        invoice_item_23 = create(:invoice_item, item_id: item_2.id)
+
+        item_3 = create(:item, merchant_id: merchant_3.id)
+        invoice_item_3 = create(:invoice_item, item_id: item_3.id)
+
+        item_4 = create(:item, merchant_id: merchant_4.id)
+        invoice_item_4 = create(:invoice_item, item_id: item_4.id)
+        invoice_item_4a = create(:invoice_item, item_id: item_4.id)
+        invoice_item_4b = create(:invoice_item, item_id: item_4.id)
+        invoice_item_4c = create(:invoice_item, item_id: item_4.id)
+
+        expect(Merchant.rank_by_items_sold(3)).to eq([merchant_4, merchant_2, merchant_1])
+        expect(Merchant.rank_by_items_sold(3)[0].items_sold_count).to eq(4)
+        expect(Merchant.rank_by_items_sold(3)[1].items_sold_count).to eq(3)
+        expect(Merchant.rank_by_items_sold(3)[2].items_sold_count).to eq(2)
+      end
+    end
   end
 
   describe "instance methods" do
