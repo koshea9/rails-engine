@@ -10,10 +10,11 @@ class Invoice < ApplicationRecord
   enum status: { 'shipped' => 0, 'returned' => 1, 'packaged' => 2 }
 
   def self.unshipped_revenue_by_invoice(invoice_limit)
-    joins(:invoice_items)
+    joins(invoice_items: {invoice: :transactions})
     .where.not(status: "shipped")
-    .select("invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS potential_revenue")
+    .where(transactions: {result: "success"})
     .group(:id)
+    .select("invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS potential_revenue")
     .order("potential_revenue DESC")
     .limit(invoice_limit)
   end

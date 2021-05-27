@@ -36,6 +36,14 @@ RSpec.describe Invoice, type: :model do
       invoice_item_6 = create(:invoice_item, invoice_id: invoice_6.id, quantity: 10, unit_price: 10)
       invoice_item_7 = create(:invoice_item, invoice_id: invoice_7.id, quantity: 10, unit_price: 10)
 
+      transaction_1 = create(:successful_transaction, invoice_id: invoice_1.id)
+      transaction_2 = create(:successful_transaction, invoice_id: invoice_2.id)
+      transaction_3 = create(:successful_transaction, invoice_id: invoice_3.id)
+      transaction_4 = create(:successful_transaction, invoice_id: invoice_4.id)
+      transaction_5 = create(:successful_transaction, invoice_id: invoice_5.id)
+      transaction_6 = create(:successful_transaction, invoice_id: invoice_6.id)
+      transaction_7 = create(:successful_transaction, invoice_id: invoice_7.id)
+
       expect(Invoice.unshipped_revenue_by_invoice(3)).to eq([invoice_7, invoice_3, invoice_5])
       expect(Invoice.unshipped_revenue_by_invoice(3).first.potential_revenue).to eq(100)
       expect(Invoice.unshipped_revenue_by_invoice(3).second.potential_revenue).to eq(60)
