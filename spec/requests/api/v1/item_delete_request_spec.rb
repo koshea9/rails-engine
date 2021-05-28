@@ -22,9 +22,9 @@ RSpec.describe 'Delete Item API Endpoint' do
       expect(Item.count).to eq(1)
 
       expect{ delete "/api/v1/items/2" }.to change(Item, :count).by(0)
-      expect(response).to_not be_successful
+      expect(response).to be_successful
       expect(Item.count).to eq(1)
-      expect{Item.delete(2)}.to raise_error(ActiveRecord::RecordNotFound)
+      expect{Item.find(2)}.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
