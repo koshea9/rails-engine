@@ -66,7 +66,7 @@ RSpec.describe 'Merchants most revenue API endpoint' do
       expect(error).to_not have_key(:data)
       expect(error).to have_key(:status)
       expect(error[:status]).to eq(404)
-      expect(error[:message]).to eq("Please enter quantity as an integer")
+      expect(error[:message]).to eq('Please enter quantity as an integer')
     end
   end
 

@@ -4,13 +4,12 @@ FactoryBot.define do
     customer
     merchant
 
-
     factory :shipped_invoice do
-      status { "shipped" }
+      status { 'shipped' }
 
-    factory :not_shipped_invoice do
-      status { ["packaged","returned"].sample }
+      factory :not_shipped_invoice do
+        status { %w[packaged returned].sample }
+      end
     end
-  end
   end
 end

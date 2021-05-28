@@ -39,7 +39,6 @@ RSpec.describe 'Single Merchant API endpoint' do
 
         expect(error).to have_key(:error)
         expect(error).to_not have_key(:data)
-
       end
     end
   end

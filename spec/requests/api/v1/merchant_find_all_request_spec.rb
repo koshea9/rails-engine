@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Find All Merchants API endpoint' do
   describe 'happy path' do
     it 'returns all merchants that match search result' do
-      merchant_1 = create(:merchant, name: "Turing School")
-      merchant_2 = create(:merchant, name: "Ring World")
-      merchant_3 = create(:merchant, name: "Square World")
+      merchant_1 = create(:merchant, name: 'Turing School')
+      merchant_2 = create(:merchant, name: 'Ring World')
+      merchant_3 = create(:merchant, name: 'Square World')
 
       get '/api/v1/merchants/find_all?name=ring'
       expect(response).to be_successful

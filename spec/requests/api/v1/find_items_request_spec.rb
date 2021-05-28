@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Find Item API Endpoint' do
   describe 'happy path' do
     it 'finds a single item that matches the name search query' do
-      item_1 = create(:item, name: "Blue Topaz Ring")
-      item_2 = create(:item, name: "Another color ring")
+      item_1 = create(:item, name: 'Blue Topaz Ring')
+      item_2 = create(:item, name: 'Another color ring')
       get '/api/v1/items/find?name=ring'
 
       expect(response).to be_successful
@@ -17,7 +17,7 @@ RSpec.describe 'Find Item API Endpoint' do
       expect(item_result[:data][:id]).to be_an(String)
 
       expect(item_result[:data]).to have_key(:type)
-      expect(item_result[:data][:type]).to eq("item")
+      expect(item_result[:data][:type]).to eq('item')
 
       expect(item_result[:data]).to have_key(:attributes)
       expect(item_result[:data][:attributes][:name]).to be_an(String)
@@ -41,7 +41,7 @@ RSpec.describe 'Find Item API Endpoint' do
       expect(item_result[:data][:id]).to be_an(String)
 
       expect(item_result[:data]).to have_key(:type)
-      expect(item_result[:data][:type]).to eq("item")
+      expect(item_result[:data][:type]).to eq('item')
 
       expect(item_result[:data]).to have_key(:attributes)
       expect(item_result[:data][:attributes][:name]).to be_an(String)
@@ -65,7 +65,7 @@ RSpec.describe 'Find Item API Endpoint' do
       expect(item_result[:data][:id]).to be_an(String)
 
       expect(item_result[:data]).to have_key(:type)
-      expect(item_result[:data][:type]).to eq("item")
+      expect(item_result[:data][:type]).to eq('item')
 
       expect(item_result[:data]).to have_key(:attributes)
       expect(item_result[:data][:attributes][:name]).to be_an(String)
@@ -90,7 +90,7 @@ RSpec.describe 'Find Item API Endpoint' do
       expect(item_result[:data][:id]).to be_an(String)
 
       expect(item_result[:data]).to have_key(:type)
-      expect(item_result[:data][:type]).to eq("item")
+      expect(item_result[:data][:type]).to eq('item')
 
       expect(item_result[:data]).to have_key(:attributes)
       expect(item_result[:data][:attributes][:name]).to be_an(String)
@@ -117,7 +117,7 @@ RSpec.describe 'Find Item API Endpoint' do
       expect(item_result[:data][:id]).to be_an(String)
 
       expect(item_result[:data]).to have_key(:type)
-      expect(item_result[:data][:type]).to eq("item")
+      expect(item_result[:data][:type]).to eq('item')
 
       expect(item_result[:data]).to have_key(:attributes)
       expect(item_result[:data][:attributes][:name]).to be_an(String)

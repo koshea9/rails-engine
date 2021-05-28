@@ -5,11 +5,11 @@ FactoryBot.define do
     credit_card_expiration_date { Faker::Business.credit_card_expiry_date }
     result { rand(0..2) }
 
-  factory :successful_transaction do
-    result { 'success' }
+    factory :successful_transaction do
+      result { 'success' }
 
-  factory :unsuccessful_transaction do
-      result { ['failed', 'refunded'].sample }
+      factory :unsuccessful_transaction do
+        result { %w[failed refunded].sample }
       end
     end
   end

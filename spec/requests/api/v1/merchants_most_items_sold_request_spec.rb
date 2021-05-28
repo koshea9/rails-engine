@@ -29,7 +29,7 @@ RSpec.describe 'Merchants most items sold API endpoint' do
 
   describe 'happy path' do
     it 'returns a variable number of merchants ranked by total items sold' do
-      get "/api/v1/merchants/most_items?quantity=3"
+      get '/api/v1/merchants/most_items?quantity=3'
 
       expect(response).to be_successful
 

@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Delete Item API Endpoint' do
   describe 'happy path' do
-    it "deletes user selected item" do
+    it 'deletes user selected item' do
       item = create(:item)
 
       expect(Item.count).to eq(1)
 
-      expect{ delete "/api/v1/items/#{item.id}" }.to change(Item, :count).by(-1)
+      expect { delete "/api/v1/items/#{item.id}" }.to change(Item, :count).by(-1)
 
       expect(response).to be_successful
       expect(Item.count).to eq(0)
-      expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+      expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -21,10 +21,10 @@ RSpec.describe 'Delete Item API Endpoint' do
 
       expect(Item.count).to eq(1)
 
-      expect{ delete "/api/v1/items/2" }.to change(Item, :count).by(0)
+      expect { delete '/api/v1/items/2' }.to change(Item, :count).by(0)
       expect(response).to be_successful
       expect(Item.count).to eq(1)
-      expect{Item.find(2)}.to raise_error(ActiveRecord::RecordNotFound)
+      expect { Item.find(2) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

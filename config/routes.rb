@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       end
       resources :merchants, only: %i[index show] do
         get '/most_items', to: 'items#index'
-          resources :items, only: [:index]
-        end
+        resources :items, only: [:index]
+      end
       namespace :items do
         get '/find', to: 'search#show'
       end
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         resources :merchant, only: [:index], controller: 'merchants'
       end
       namespace :revenue do
-        resources :merchants, only: [:index, :show]
+        resources :merchants, only: %i[index show]
         get '/unshipped', to: 'invoices#index'
       end
     end

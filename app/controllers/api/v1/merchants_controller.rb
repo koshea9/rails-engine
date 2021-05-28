@@ -1,5 +1,4 @@
 class Api::V1::MerchantsController < ApplicationController
-
   def index
     if params[:item_id]
       item = Item.find(params[:item_id])
@@ -12,7 +11,7 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    if params[:id] == "most_items"
+    if params[:id] == 'most_items'
       merchants = Merchant.rank_by_items_sold(params[:quantity])
       render json: ItemsSoldSerializer.new(merchants)
     else

@@ -31,7 +31,6 @@ RSpec.describe 'Unshipped Order Revenue Request' do
 
   describe 'happy path' do
     it 'returns the total revenue for unshipped orders with quanitity limit' do
-
       get '/api/v1/revenue/unshipped?quantity=2'
 
       expect(response).to be_successful
