@@ -3,10 +3,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      namespace :merchants do
+        get '/find_all', to: 'search#index'
+      end
       resources :merchants, only: %i[index show] do
         get '/most_items', to: 'items#index'
-        resources :items, only: [:index]
-      end
+          resources :items, only: [:index]
+        end
       namespace :items do
         get '/find', to: 'search#show'
       end
