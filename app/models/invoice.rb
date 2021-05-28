@@ -7,8 +7,6 @@ class Invoice < ApplicationRecord
   has_many :invoice_items
   has_many :items, through: :invoice_items
 
-  enum status: { 'shipped' => 0, 'returned' => 1, 'packaged' => 2 }
-
   def self.unshipped_revenue_by_invoice(invoice_limit)
     joins(invoice_items: {invoice: :transactions})
     .where.not(status: "shipped")

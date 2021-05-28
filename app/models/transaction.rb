@@ -8,6 +8,4 @@ class Transaction < ApplicationRecord
   has_one :customer, through: :invoice
   has_one :merchant, through: :invoice
   has_many :items, through: :invoice_items
-
-  enum result: { 'failed' => 0, 'refunded' => 1, 'success' => 2 }
 end
