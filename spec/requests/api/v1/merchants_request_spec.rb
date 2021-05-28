@@ -121,7 +121,6 @@ RSpec.describe 'Merchants API endpoint' do
     describe 'get all merchants' do
       it 'returns defaults to return the first 20 merchants if user enters page <0' do
         get '/api/v1/merchants?page=-1'
-
         merchants = JSON.parse(response.body, symbolize_names: true)
 
         expect(merchants[:data].count).to eq(20)
