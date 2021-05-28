@@ -3,7 +3,7 @@ class Api::V1::ItemsController < ApplicationController
   def index
     if params[:merchant_id]
       merchant = Merchant.find(params[:merchant_id])
-      render json: ItemSerializer.new(merchant.items, { params: { merchant_item: true } })
+      render json: ItemSerializer.new(merchant.items)
     else
       items = Item.all.limit(page_limit).offset(page)
       render json: ItemSerializer.new(items)
@@ -17,6 +17,14 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     render json: Item.create(item_params)
+  end
+
+  def update
+    render json: Item.update(params[:id], item_params)
+  end
+
+  def destroy
+    render json: Item.delete(params[:id])
   end
 
   private

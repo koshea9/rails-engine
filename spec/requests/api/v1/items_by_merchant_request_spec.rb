@@ -24,7 +24,8 @@ RSpec.describe 'Items by Merchant API endpoint' do
       items = JSON.parse(response.body, symbolize_names: true)
 
       expect(items[:data].count).to eq(7)
-      expect(items[:data].first[:attributes][:name]).to eq(item_1.name)
+
+      expect(items[:data].first[:attributes][:merchant_id]).to eq(merchant_1.id)
 
       items[:data].each do |item|
         expect(item).to have_key(:id)
