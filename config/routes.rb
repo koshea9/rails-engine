@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get '/most_items', to: 'items#index'
         resources :items, only: [:index]
       end
+      namespace :items do
+        get '/find', to: 'search#show'
+      end
       resources :items, only: %i[index show create update destroy] do
         resources :merchant, only: [:index], controller: 'merchants'
       end
