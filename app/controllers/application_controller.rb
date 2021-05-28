@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   rescue_from ActionController::RoutingError, with: -> { render_404  }
 
 
+
   def render_unprocessable_entity_response(exception)
     render json: exception.record.errors, status: :unprocessable_entity
   end
