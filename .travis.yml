@@ -1,0 +1,17 @@
+language: ruby
+rbenv:
+- 2.5.3
+addons:
+  postgresql: 9.6
+script:
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: Cz+Tu9bRY7RI6E4XNfy4y6WWzUC6qe55fs44XZeuddER9kWy+JGxomW6sjaRnewwPkQKdRsPqArDfkJZKvdHctuvWKRNHjCTCpPKqwK/V9Xcww+tIfuiHfPH7aMNWwsHs68UpMK4TeA4FW/wgEawoIDrZr+pf9BYqMIuWXh7bhUP0GMAK5+uteX46KepL4pF3knfY0qzCTQWdJ/+7E7tasCB1Qnr/Q0Vp5bkK0SKjl+/N9H41xlEU94FUH16oK/6h/pa5t2k3FDfv+a6FzKbmthW1+0w2Ur0BKJYipn2bUG/OAQAlTY+SdKtWx+2RYIj12Eg+qYw8O/ogurgtJXXKBBUPkZE5dbboeq1q7LRTrjCcoxv9GKKMlpUKO4RzO0J0/3VEZedIh/EbYmkORkZvOY1OJ27la1eFBPb0eqtrz7Yhhc+ANHeyYrW6tqwpOqExQWlL+WWWbCo/ixPxEqVCW+h34CvRbfkWOZeMnNxJvr8FtRjoQxOYvjnhow1QxNkmI7Nn8DuQ/nED2q9Qu95SOEoaRTaTM1pfROsc8BomlPo4ccB55RkByfG61SgX4fTY1bVXTJPAvnOxIjGXjhCej0LeOlLUcdQ1QvHKZs+du6vahm5vEOiLnQd1qj7gwtBpYspw7W/UMRwiKAJtXGjP8kcii/BGBOtMJJ7Zd2kfDc=
+  app: rails-engine
+  on:
+    repo: koshea9/rails-engine
+    branch: main
+  skip_cleanup: 'true'
