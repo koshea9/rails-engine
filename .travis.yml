@@ -4,10 +4,10 @@ rbenv:
 addons:
   postgresql: 9.6
 before_script:
-- bundle exec rails db:{drop,create,migrate,seed} RAILS_ENV=test
-- bundle exec rails db:schema:dump
 script:
-- bundle exec rspec
+  - bundle exec rails db:schema:dump
+  - bundle exec rails db:{drop,create,migrate,seed} RAILS_ENV=test
+  - bundle exec rspec
 deploy:
   provider: heroku
   api_key:
