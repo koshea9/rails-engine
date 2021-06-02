@@ -3,8 +3,10 @@ rbenv:
 - 2.5.3
 addons:
   postgresql: 9.6
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 script:
-- bundle exec rails db:{drop,create,migrate,seed} RAILS_ENV=development
+- bundle exec rails db:{drop,create,migrate,seed} RAILS_ENV=test
 - bundle exec rails db:schema:dump
 - bundle exec rspec
 deploy:
