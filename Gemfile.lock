@@ -70,15 +70,41 @@ GEM
       railties (>= 5.0.0)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
+    faraday (1.4.2)
+      faraday-em_http (~> 1.0)
+      faraday-em_synchrony (~> 1.0)
+      faraday-excon (~> 1.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-em_http (1.0.0)
+    faraday-em_synchrony (1.0.0)
+    faraday-excon (1.1.0)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.1.0)
+    faraday_middleware (1.0.0)
+      faraday (~> 1.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.15.1)
+    gh (0.18.0)
+      activesupport (~> 5.0)
+      addressable (~> 2.4)
+      faraday (~> 1.0)
+      faraday_middleware (~> 1.0)
+      multi_json (~> 1.0)
+      net-http-persistent (~> 2.9)
+      net-http-pipeline
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    highline (2.0.3)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    launchy (2.5.0)
-      addressable (~> 2.7)
+    json (2.5.1)
+    json_pure (2.5.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -91,10 +117,16 @@ GEM
     marcel (1.0.1)
     method_source (1.0.0)
     mini_mime (1.1.0)
+    mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
+    multipart-post (2.1.1)
+    net-http-persistent (2.9.4)
+    net-http-pipeline (1.0.1)
     nio4r (2.5.7)
-    nokogiri (1.11.6-x86_64-darwin)
+    nokogiri (1.11.6)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -105,6 +137,9 @@ GEM
       method_source (~> 1.0)
     public_suffix (4.0.6)
     puma (3.12.6)
+    pusher-client (0.6.2)
+      json
+      websocket (~> 1.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -173,6 +208,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
     shoulda-matchers (3.1.3)
       activesupport (>= 4.0.0)
@@ -195,9 +231,18 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     thread_safe (0.3.6)
+    travis (1.10.0)
+      faraday (~> 1.0)
+      faraday_middleware (~> 1.0)
+      gh (~> 0.13)
+      highline (~> 2.0)
+      json_pure (~> 2.3)
+      launchy (~> 2.1, < 2.5.0)
+      pusher-client (~> 0.4)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     unicode-display_width (2.0.0)
+    websocket (1.2.9)
     websocket-driver (0.7.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -205,7 +250,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  x86_64-darwin-19
+  ruby
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
@@ -225,10 +270,11 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
+  travis
   tzinfo-data
 
 RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   2.2.17
+   2.1.4
