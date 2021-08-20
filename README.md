@@ -20,9 +20,27 @@ Rails Engine is a Rails-based API which mimics an e-commerce platform reporting 
 Navigate to http://localhost:3000
 
 ## Endpoint Examples
+Business Intelligence
+- [GET Merchants with Most Revenue](http://localhost:3000/api/v1/revenue/merchants?quantity=10)
+- [GET Merchants who Sold Most Items](http://localhost:3000/api/v1/merchants/most_items?quantity=8)
+- [GET Revenue of a Single Merchant](http://localhost:3000/api/v1/revenue/merchants/42)
+- [GET Potential Revenue of Unshipped Orders](http://localhost:3000/api/v1/revenue/unshipped)
+
+Merchants
 - [GET All Merchants](http://localhost:3000/api/v1/merchants)
 - [GET One Merchant](http://localhost:3000/api/v1/merchants/42)
 - [GET a Merchant's Items](http://localhost:3000/api/v1/merchants/42/items)
+- [GET Find All Merchants by Name Fragment](http://localhost:3000/api/v1/merchants/find_all?name=ILL)
+
+Items
+- [GET All Items](http://localhost:3000/api/v1/items)
+- [GET One Item](http://localhost:3000/api/v1/items/179)
+- [GET an Item's Merchant](http://localhost:3000/api/v1/items/11/merchant)
+- [GET Find One Item by Name Fragment](http://localhost:3000/api/v1/items/find?name=hArU)
+
+Error Handling Examples
+- [String Instead of Integer](http://localhost:3000/api/v1/merchants/string-instead-of-integer)
+- [Merchant does not exist](http://localhost:3000/api/v1/merchants/8923987297)
 
 
 Database Schema
